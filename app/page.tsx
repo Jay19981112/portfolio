@@ -59,20 +59,20 @@ export default function Home() {
 
   const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
-    rootMargin: "-100px 0px",
+    threshold: 0.2,
+    rootMargin: "-50px 0px",
   });
 
   const [skillsRef, skillsInView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
-    rootMargin: "-100px 0px",
+    threshold: 0.2,
+    rootMargin: "-50px 0px",
   });
 
   const [projectsRef, projectsInView] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
-    rootMargin: "-100px 0px",
+    threshold: 0.2,
+    rootMargin: "-50px 0px",
   });
 
   useEffect(() => {
