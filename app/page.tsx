@@ -258,7 +258,7 @@ export default function Home() {
             {skills.map((skillGroup, index) => (
               <motion.div
                 key={index}
-                className="py-16 px-8 border-l border-white/10 hover:bg-white/5 transition-colors"
+                className="py-16 px-8 border-b md:border-b-0 border-l border-white/10 hover:bg-white/5 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
