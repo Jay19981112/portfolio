@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Mail, Twitter, Code2, Globe, Cpu } from "lucide-react";
+import { Linkedin, Mail, Code2, Globe, Database, Palette } from "lucide-react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useEffect, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -31,34 +31,55 @@ const projects = [
 
 const skills = [
   {
-    category: "Frontend",
+    category: "Languages & Frameworks",
     icon: <Code2 className="w-6 h-6" />,
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    items: ["TypeScript", "React", "Next.js", "Ruby on Rails", "Node.js", "Go"],
   },
   {
-    category: "Backend",
-    icon: <Cpu className="w-6 h-6" />,
-    items: ["Node.js", "Python", "PostgreSQL", "Redis"],
+    category: "Database & ORM",
+    icon: <Database className="w-6 h-6" />,
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Firebase", "Prisma", "Sequelize", "Gorm"],
   },
   {
-    category: "DevOps",
+    category: "UI & Styling",
+    icon: <Palette className="w-6 h-6" />,
+    items: ["Tailwind CSS", "Material UI", "Responsive Design"],
+  },
+  {
+    category: "Infrastructure",
     icon: <Globe className="w-6 h-6" />,
-    items: ["Docker", "AWS", "CI/CD", "Kubernetes"],
-  },
+    items: ["AWS", "Docker", "Vercel"],
+  }
 ];
 
 export default function Home() {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
+  const aboutControls = useAnimation();
+  const skillsControls = useAnimation();
+  const projectsControls = useAnimation();
+
+  const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.5,
+    rootMargin: "-100px 0px",
+  });
+
+  const [skillsRef, skillsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+    rootMargin: "-100px 0px",
+  });
+
+  const [projectsRef, projectsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+    rootMargin: "-100px 0px",
   });
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
+    if (aboutInView) aboutControls.start("visible");
+    if (skillsInView) skillsControls.start("visible");
+    if (projectsInView) projectsControls.start("visible");
+  }, [aboutControls, skillsControls, projectsControls, aboutInView, skillsInView, projectsInView]);
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
@@ -196,9 +217,9 @@ export default function Home() {
 
       {/* About Section */}
       <motion.section
-        ref={ref}
+        ref={aboutRef}
         initial="hidden"
-        animate={controls}
+        animate={aboutControls}
         variants={fadeInUp}
         className="relative py-32 px-8"
       >
@@ -223,9 +244,9 @@ export default function Home() {
 
       {/* Skills Section */}
       <motion.section
-        ref={ref}
+        ref={skillsRef}
         initial="hidden"
-        animate={controls}
+        animate={skillsControls}
         variants={fadeInUp}
         className="relative py-32 px-8"
       >
@@ -233,13 +254,13 @@ export default function Home() {
           <h2 className="text-3xl mb-12 text-white font-quicksand">
             「 Skills 」
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             {skills.map((skillGroup, index) => (
               <motion.div
                 key={index}
-                className="bg-[#0A0A0A] py-16 px-8 border-l border-white/10 hover:bg-white/5 transition-colors"
+                className="py-16 px-8 border-l border-white/10 hover:bg-white/5 transition-colors"
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <div className="flex flex-col items-start gap-8">
                   <div className="flex items-center gap-3">
@@ -260,9 +281,9 @@ export default function Home() {
 
       {/* Projects Section */}
       <motion.section
-        ref={ref}
+        ref={projectsRef}
         initial="hidden"
-        animate={controls}
+        animate={projectsControls}
         variants={fadeInUp}
         className="relative py-32 px-8"
       >
